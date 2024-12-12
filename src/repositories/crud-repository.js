@@ -8,8 +8,8 @@ class CrudRepository {
 
     async create(data) {
         const response = await this.model.create(data);
-        return response;
         
+        return response;
     }
 
     async destroy(data) {
@@ -18,22 +18,27 @@ class CrudRepository {
                 id: data
             }
         });
+
         if(!response) {
             throw new AppError("Not able to fund the resource", StatusCodes.NOT_FOUND); 
         }
+
         return response;
     }
 
     async get(data) {
         const response = await this.model.findByPk(data);
+
         if(!response) {
             throw new AppError("Not able to fund the resource", StatusCodes.NOT_FOUND); 
         }
+
         return response;
     }
 
     async getAll() {
         const response = await this.model.findAll();
+
         return response;
     }
 
@@ -43,9 +48,11 @@ class CrudRepository {
                 id: id
             }
         });
+
         if(response[0] == 0) {
             throw new AppError("Not able to fund the resource", StatusCodes.NOT_FOUND);
         }
+
         return response;
     }
 }
