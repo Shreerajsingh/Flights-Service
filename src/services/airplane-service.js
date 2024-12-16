@@ -4,7 +4,7 @@ const AppError = require("../utils/error/app-error");
 
 const airplaneRepository = new AirplaneRepository();
 
-async function createService(data) {
+async function createAirplane(data) {
     try {
         const response = await airplaneRepository.create(data);
         return response;
@@ -72,12 +72,12 @@ async function updateAirplane(id, data) {
         if(error.statusCode == StatusCodes.NOT_FOUND) {
             throw new AppError("Airplane you requested to update is not present", error.statusCode);
         }
-        throw new AppError("Airplane can't be deleted", StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError("Airplane can't be updated", StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 module.exports = {
-    createService,
+    createAirplane,
     getAirplanes,
     getAirplane,
     destroyAirplane,
