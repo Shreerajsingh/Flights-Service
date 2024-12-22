@@ -8,6 +8,8 @@ router.post('/', FlightMiddlewares.createMiddleware, FlightController.createFlig
 
 router.get('/', FlightController.getAllFlights);
 
+router.get('/:id', FlightController.getFlight);
+
 /*
 
 router.get('/:id', FlightController.getFlight);

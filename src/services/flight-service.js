@@ -1,10 +1,10 @@
 const { StatusCodes } = require("http-status-codes");
 const AppError = require("../utils/error/app-error");
-const { FLightRepository } = require("../repositories");
+const { FlightRepository } = require("../repositories");
 const compareTime = require("../utils/helpers/datetime-helper");
 const { Op } = require("sequelize");
 
-const flightRepository = new FLightRepository();
+const flightRepository = new FlightRepository();
 
 async function createFlight(data) {
     try {
@@ -35,7 +35,7 @@ async function createFlight(data) {
 
 async function getAllFlights(query) {
     let customFilter = {};
-    let sortFilter = {};
+    let sortFilter = [];
     const endingTripTime = " 23:59:00";
 
     if(query.trips) {
@@ -81,7 +81,22 @@ async function getAllFlights(query) {
     }
 }
 
+async function getFlight(id) {
+    try {
+        const response = await flightRepository.get(id);
+
+        return response;
+    } catch (error) {
+        if(error.statusCode == StatusCodes.NOT_FOUND) {
+            return new AppError("The flight you requested is not present", error.statusCode);
+        }
+
+        return new AppError("Cannot fetch the data of requested flight", StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight
 }
