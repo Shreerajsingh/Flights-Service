@@ -50,6 +50,7 @@ async function getFlight(req, res) {
     }
 }
 
+<<<<<<< HEAD
 async function updateSeats(req, res) {
     try {
         const response = await FlightService.updateRemainingSeats({
@@ -71,4 +72,10 @@ module.exports = {
     getAllFlights,
     getFlight,
     updateSeats
+=======
+module.exports = {
+    createFlight,
+    getAllFlights,
+    getFlight
+>>>>>>> bac035f27fa1adf0ac7e3a63e7871bcbcb157868
 }

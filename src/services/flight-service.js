@@ -95,6 +95,7 @@ async function getFlight(id) {
     }
 }
 
+<<<<<<< HEAD
 async function updateRemainingSeats(data) {
     try {
         const response = await flightRepository.updateRemainingSeats(data.flightId, data.seats, data.dec);
@@ -111,4 +112,10 @@ module.exports = {
     getAllFlights,
     getFlight,
     updateRemainingSeats
+=======
+module.exports = {
+    createFlight,
+    getAllFlights,
+    getFlight
+>>>>>>> bac035f27fa1adf0ac7e3a63e7871bcbcb157868
 }
